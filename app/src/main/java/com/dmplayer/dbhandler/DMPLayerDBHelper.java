@@ -37,6 +37,7 @@ public class DMPLayerDBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         try {
             db.execSQL(sqlForCreateMostPlay());
+            db.execSQL(sqlForMood());
             db.execSQL(sqlForCreateFavoritePlay());
         } catch (SQLException e) {
             e.printStackTrace();
@@ -100,6 +101,22 @@ public class DMPLayerDBHelper extends SQLiteOpenHelper {
                 + FavoritePlayTableHelper.AUDIOPROGRESSSEC + " INTEGER NOT NULL,"
                 + FavoritePlayTableHelper.LastPlayTime + " TEXT NOT NULL,"
                 + FavoritePlayTableHelper.ISFAVORITE + " INTEGER NOT NULL);";
+        return sql;
+    }
+
+    public static String sqlForMood() {
+        String sql = "CREATE TABLE " + MoodTableHelper.TABLENAME + " (" + MoodTableHelper.ID + " INTEGER NOT NULL PRIMARY KEY,"
+                + MoodTableHelper.ALBUM_ID + " INTEGER NOT NULL,"
+
+                + MoodTableHelper.ARTIST + " TEXT NOT NULL,"
+                + MoodTableHelper.TITLE + " TEXT NOT NULL,"
+                + MoodTableHelper.DISPLAY_NAME + " TEXT NOT NULL,"
+                + MoodTableHelper.DURATION + " TEXT NOT NULL,"
+                + MoodTableHelper.PATH + " TEXT NOT NULL,"
+                + MoodTableHelper.AUDIOPROGRESS + " TEXT NOT NULL,"
+                + MoodTableHelper.AUDIOPROGRESSSEC + " INTEGER NOT NULL,"
+                + MoodTableHelper.LastPlayTime + " TEXT NOT NULL,"
+                + MoodTableHelper.MOOD + " TEXT NOT NULL);";
         return sql;
     }
 

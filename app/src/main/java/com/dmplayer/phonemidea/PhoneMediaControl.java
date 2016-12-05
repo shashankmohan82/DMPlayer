@@ -18,6 +18,7 @@ import android.util.Log;
 
 import com.dmplayer.ApplicationDMPlayer;
 import com.dmplayer.dbhandler.FavoritePlayTableHelper;
+import com.dmplayer.dbhandler.MoodTableHelper;
 import com.dmplayer.dbhandler.MostAndRecentPlayTableHelper;
 import com.dmplayer.manager.MediaController;
 import com.dmplayer.models.SongDetail;
@@ -29,7 +30,7 @@ public class PhoneMediaControl {
     private static volatile PhoneMediaControl Instance = null;
 
     public static enum SonLoadFor {
-        All, Gener, Artis, Album, Musicintent, MostPlay, Favorite, ResecntPlay
+        All, Gener, Artis, Album, Musicintent, Mood, Favorite, ResecntPlay
     }
 
     public static PhoneMediaControl getInstance() {
@@ -119,8 +120,8 @@ public class PhoneMediaControl {
                 songsList = getSongsFromCursor(cursor);
                 break;
 
-            case MostPlay:
-                cursor = MostAndRecentPlayTableHelper.getInstance(context).getMostPlay();
+            case Mood:
+                cursor = MoodTableHelper.getInstance(context).getHappyList();
                 songsList = getSongsFromSQLDBCursor(cursor);
                 break;
 
@@ -143,7 +144,6 @@ public class PhoneMediaControl {
                 int data = cursor.getColumnIndex(MediaStore.Audio.Media.DATA);
                 int display_name = cursor.getColumnIndex(MediaStore.Audio.Media.DISPLAY_NAME);
                 int duration = cursor.getColumnIndex(MediaStore.Audio.Media.DURATION);
-
                 while (cursor.moveToNext()) {
 
                     int ID = cursor.getInt(_id);
@@ -153,7 +153,8 @@ public class PhoneMediaControl {
                     String DURATION = cursor.getString(duration);
                     String Path = cursor.getString(data);
 
-                    SongDetail mSongDetail = new SongDetail(ID, album_id, ARTIST, TITLE, Path, DISPLAY_NAME, DURATION);
+
+                    SongDetail mSongDetail = new SongDetail(ID, album_id, ARTIST, TITLE, Path, DISPLAY_NAME, DURATION,"");
                     generassongsList.add(mSongDetail);
                 }
             }
@@ -178,8 +179,9 @@ public class PhoneMediaControl {
                     String DISPLAY_NAME = cursor.getString(cursor.getColumnIndex(FavoritePlayTableHelper.DISPLAY_NAME));
                     String DURATION = cursor.getString(cursor.getColumnIndex(FavoritePlayTableHelper.DURATION));
                     String Path = cursor.getString(cursor.getColumnIndex(FavoritePlayTableHelper.PATH));
+                    String Mood = cursor.getString(cursor.getColumnIndex(MoodTableHelper.MOOD));
 
-                    SongDetail mSongDetail = new SongDetail((int) ID, (int) album_id, ARTIST, TITLE, Path, DISPLAY_NAME, "" + (Long.parseLong(DURATION) * 1000));
+                    SongDetail mSongDetail = new SongDetail((int) ID, (int) album_id, ARTIST, TITLE, Path, DISPLAY_NAME, "" + (Long.parseLong(DURATION) * 1000),Mood);
                     generassongsList.add(mSongDetail);
                 }
             }

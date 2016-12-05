@@ -555,7 +555,7 @@ public class DMPlayerBaseActivity extends ActionBarActivity implements View.OnCl
                 FragmentLibrary fragmentlibrary = new FragmentLibrary();
                 fragmentTransaction.replace(R.id.fragment, fragmentlibrary);
                 fragmentTransaction.commit();
-                toolbar.setTitle("My Library");
+                toolbar.setTitle("MOODS");
                 break;
             case 2:
                 sharedPreferences.edit().putInt("FRAGMENT", position).apply();

@@ -27,7 +27,7 @@ import com.dmplayer.childfragment.ChildFragmentMostPlay;
 
 public class FragmentLibrary extends Fragment {
 
-    private final String[] TITLES = {"ALBUMS", "ARTISTS", "GENRES", "MOSTPLAY"};
+    private final String[] TITLES = {"HAPPY", "ANGRY", "SAD", "CALM"};
     private TypedValue typedValueToolbarHeight = new TypedValue();
     private ChildFragmentGenres childFragmentGenres;
     private ChildFragmentArtists childFragmentArtists;
@@ -63,7 +63,7 @@ public class FragmentLibrary extends Fragment {
         MyPagerAdapter pagerAdapter = new MyPagerAdapter(getFragmentManager());
         pager.setAdapter(pagerAdapter);
         tabs = (SlidingTabLayout) view.findViewById(R.id.tabs);
-        tabs.setDistributeEvenly(false);
+        tabs.setDistributeEvenly(true);
         // Tab indicator color
         tabs.setCustomTabColorizer(new SlidingTabLayout.TabColorizer() {
             @Override

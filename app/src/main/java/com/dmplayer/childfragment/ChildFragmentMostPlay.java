@@ -76,7 +76,7 @@ public class ChildFragmentMostPlay extends Fragment {
                 mAllSongsListAdapter.notifyDataSetChanged();
             }
         });
-        mPhoneMediaControl.loadMusicList(getActivity(), -1, PhoneMediaControl.SonLoadFor.MostPlay, "");
+        mPhoneMediaControl.loadMusicList(getActivity(), -1, PhoneMediaControl.SonLoadFor.Mood, "");
     }
 
     public class AllSongsListAdapter extends BaseAdapter {
@@ -146,7 +146,7 @@ public class ChildFragmentMostPlay extends Fragment {
                         if (MediaController.getInstance().isPlayingAudio(mDetail) && !MediaController.getInstance().isAudioPaused()) {
                             MediaController.getInstance().pauseAudio(mDetail);
                         } else {
-                            MediaController.getInstance().setPlaylist(songList, mDetail, PhoneMediaControl.SonLoadFor.MostPlay.ordinal(), -1);
+                            MediaController.getInstance().setPlaylist(songList, mDetail, PhoneMediaControl.SonLoadFor.Mood.ordinal(), -1);
                         }
                     }
 

@@ -26,15 +26,25 @@ public class SongDetail {
 	public String path;
 	public float audioProgress = 0.0f;
 	public int audioProgressSec = 0;
+	public String mood;
 
-	public SongDetail(int _id, int aLBUM_ID, String _artist, String _title, String _path, String _display_name, String _duration) {
+	public SongDetail(int _id, int aLBUM_ID, String _artist, String _title, String _path, String _display_name, String _duration,String _mood) {
 		this.id = _id;
 		this.album_id = aLBUM_ID;
 		this.artist = _artist;
+		this.mood = _mood;
 		this.title = _title;
 		this.path = _path;
 		this.display_name = _display_name;
 		this.duration = TextUtils.isEmpty(_duration) ? "0" : String.valueOf((Long.valueOf(_duration) / 1000));
+	}
+
+	public String getMood() {
+		return mood;
+	}
+
+	public void setMood(int id) {
+		this.mood = mood;
 	}
 
 	public int getId() {
